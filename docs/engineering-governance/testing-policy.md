@@ -35,7 +35,8 @@ History scanning is blocked before the first commit; directory scanning still wo
 `Workflow lint` validates every workflow. `PR disclosure` validates the actual PR
 event with trusted base code using a read-only token, no secrets and no PR-head
 execution. It reruns on body edits and new commits. There are no path filters or
-continue-on-error gates. CI runs on all pushes and relevant PRs; required status
+continue-on-error gates. Quality CI runs on main pushes and relevant PRs; body
+edits rerun only disclosure validation to avoid duplicating quality jobs. Required status
 contexts must be observed in successful GitHub PR runs before activation.
 
 Test changes through public interfaces and real collaborators where practical.
