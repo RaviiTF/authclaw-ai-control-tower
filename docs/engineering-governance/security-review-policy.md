@@ -19,14 +19,12 @@ qualifying non-author code-owner approval is required; two approvals are not
 required. If VidhiTF authors a PR, another explicitly authorized independent
 reviewer must be designated and made eligible before it can merge.
 
-VidhiTF currently has public read access, not qualifying write access. The owner
-explicitly authorized a write-access invitation; it was sent and is pending
-acceptance. Verify accepted write access before relying on that entry.
-CODEOWNERS has no mandatory
-effect until it exists on the PR base and native **Require review from Code
-Owners** is enabled. Native rules must also require at least one approval,
-dismiss stale approvals and require approval of the latest reviewable push by
-someone other than its pusher. A bot run is not a human review. Do not auto-approve
+VidhiTF accepted the authorized invitation and has verified write access.
+CODEOWNERS exists on the PR base and GitHub reports no ownership errors.
+Active ruleset 25955410 requires one approval and code-owner review, dismisses
+stale approvals and requires latest-reviewable-push approval by another person.
+PR #1 reports REVIEW_REQUIRED and BLOCKED until qualifying review.
+A bot run is not a human review. Do not auto-approve
 or self-approve. If no eligible non-author owner exists, leave the PR unmerged.
 
 As the application grows, refine ownership only with real approved identities and

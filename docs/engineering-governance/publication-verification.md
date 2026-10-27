@@ -15,11 +15,14 @@ The feature descends from that seed and proposes the remaining governance baseli
 through PR #1. A small workflow correction eliminates duplicate feature push/PR
 quality jobs and reruns disclosure alone for PR-body edits. Base parser, README and
 CODEOWNERS are unchanged. No application behavior or runtime dependency changed.
-Original uncommitted preparation files were preserved in the original checkout.
+Original preparation bytes were preserved, verified against the audited snapshot,
+then safely aligned to the published branch. The canonical checkout is now
+`D:/AI TOWER/authclaw-ai-control-tower`.
 
 ## 2. Commands and tests
 
-Publication checkout: `D:/AI TOWER/.governance-publication`.
+Initial publication checkout: `D:/AI TOWER/.governance-publication`; subsequent
+verification/PR updates use the canonical checkout above.
 Ran `python -m unittest discover -s tests -v` (15 passed),
 `python scripts/governance.py repository` (passed), actionlint 1.7.12 (passed),
 Gitleaks 8.30.1 directory/history scans (passed), staged/diff whitespace checks
@@ -68,20 +71,27 @@ Ruleset **25955410 / Main governance** is active on `refs/heads/main` with
 - `required_status_checks`: Governance tests and hygiene; Workflow lint; Secret
   scan; PR disclosure. All bound to integration 15368.
 - `strict_required_status_checks_policy: true`; no create-time check exemption.
+- `pull_request`: one approval, code-owner review, latest-push approval,
+  stale-approval dismissal on pushes and resolved review threads.
 
-This is **partial governance**: mandatory PR, one-human-review, CODEOWNERS,
-latest-push approval and conversation-resolution rules are **not active yet**.
-An attempted interim PR rule with zero approvals was rejected by automatic
+The full review policy was activated after VidhiTF's accepted write access and
+valid CODEOWNERS were verified. Effective branch-rules readback confirms all
+parameters; PR #1 reports REVIEW_REQUIRED and BLOCKED. An earlier interim PR rule
+with zero approvals was rejected by automatic
 approval review because it left the independent-human-review policy unenforced;
-it was not applied and no workaround was attempted. Full policy activation is
-pending accepted reviewer access under the approved preflight. No claim is made
-that the Merge button is disabled. Passing checks alone never authorize a merge.
+it was not applied. The later full one-approval activation follows the approved
+policy and the owner's conditional authorization. No merge was performed.
+
+A live negative control removed the Blocked evidence category: run 40503094336
+failed with exit 1 and GitHub reported BLOCKED. Restoring the complete body passed
+in run 40503218116. These are actual CI-gate observations. No approval has yet been
+submitted, so stale dismissal, reapproval and thread-resolution behavior are
+configuration-verified, not demonstrated through a real human review cycle.
 
 ## 7. Reviewer eligibility
 
-Authorized invitation **339959336** was sent to VidhiTF with `write` permission;
-it is pending acceptance. Current effective permission is public read. CODEOWNERS
-API reports Unknown owner until qualifying access is accepted. RaviiTF is the
+Authorized invitation **339959336** was accepted. Current effective permission is
+`write`; the invitation list and CODEOWNERS error list are empty. RaviiTF is the
 author/admin, not the independent reviewer. Do not request approval as a substitute
 for access or count any bot/agent result as human review.
 
@@ -99,12 +109,12 @@ after documentation commits.
 
 ## 9. Remaining blockers
 
-VidhiTF must accept qualifying write access. Then validate CODEOWNERS and activate
-the full mandatory-review policy while preserving active safeguards. The full
-prepared branch-protection.json has count 1, code-owner review, stale dismissal,
-latest-push approval, conversation resolution, required checks, admin enforcement
-and no force/deletion. It has not been applied. Confirm actual effective behavior
-on an unmerged PR, without a destructive push/delete experiment.
+PR #1 awaits VidhiTF's actual qualifying review. Do not approve on another person's
+behalf or merge without separate authorization. All configured native review rules
+are active. The local branch-protection.json is an unapplied classic-API reference;
+equivalent full enforcement is supplied by the active ruleset, with no bypass
+actors. Do not duplicate or weaken it. A real human approval/reapproval cycle and
+destructive force/delete experiments have not been performed.
 
 Restoring private visibility requires a supported plan if protection is to remain
 effective, completed mission prerequisites and explicit transition authorization.
@@ -114,5 +124,6 @@ Do not toggle visibility or remove rules to get a green result.
 
 Instructions, PR metadata requirements, tests and workflows are published in the
 unmerged feature PR. Required CI and history safeguards are native/verified.
-Mandatory independent approval and remaining PR rules are prepared/blocked, not
-GitHub-enforced yet. All work remains unmerged; original preparation work is safe.
+Mandatory independent approval, PR, code-owner, latest-push, stale-review and
+conversation rules are now native/configuration-verified; review-required blocking
+is observed on PR #1. All work remains unmerged, awaiting actual human review.

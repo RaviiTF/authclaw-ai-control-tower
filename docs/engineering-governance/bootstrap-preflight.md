@@ -99,7 +99,8 @@ The owner approved both the exact three-file seed/publication PR and VidhiTF's
 write-access invitation in this chat. Remote refs/rules/invitations were rechecked
 before acting; no conflicting work or existing protection was present.
 
-- Invitation 339959336 sent to VidhiTF with `write` permission; acceptance pending.
+- Invitation 339959336 was sent and subsequently accepted. The permission API
+  confirms VidhiTF has `write`; pending invitations and CODEOWNERS errors are empty.
 - Seed `df5237cb2dc66da7b14fb6b8c2e81893b62c12e1` created in a separate checkout
   using a repository-local GitHub noreply identity. Its tree contains exactly
   README.md, scripts/governance.py and .github/CODEOWNERS (136 lines).
@@ -109,6 +110,7 @@ before acting; no conflicting work or existing protection was present.
   orphan history was not published. The three approved seed files are unchanged.
 - Hosted PR runs 40502040013 and 40502040015 passed all four checks at be68fa9.
   Active ruleset 25955410 now enforces no force/deletion and those app-bound
-  required checks. Mandatory human/code-owner/latest-push approval is still pending
-  accepted reviewer access. See publication-verification.md for exact limits.
+  required checks. After accepted access was verified, its full PR/code-owner/
+  latest-push/stale-review/conversation requirements were activated. PR #1 now
+  reports REVIEW_REQUIRED and BLOCKED. See publication-verification.md for limits.
 - No merge, bypass, visibility change or unapproved access change occurred.
