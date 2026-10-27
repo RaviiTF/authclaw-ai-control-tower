@@ -1,0 +1,17 @@
+# Local secrets; only explicitly sanitized *.example configuration may be tracked.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+id_rsa
+id_ed25519
+.aws/
+__pycache__/
+*.py[cod]
+.venv/
+.tools/
+.superpowers/
