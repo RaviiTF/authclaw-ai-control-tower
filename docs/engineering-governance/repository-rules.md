@@ -13,7 +13,11 @@ the feature branch descends from the seed, not the earlier orphan history.
   upgrade for protection/rules APIs. At the latest execution's start the repository
   was already public; this agent did not change visibility. Rulesets now return
   HTTP 200 with `[]`. After the authorized seed, main's branch metadata reports
-  `protected: false`. No effective merge protection is claimed yet.
+  `protected: false` at creation. Ruleset 25955410, **Main governance**, is now active
+  for `refs/heads/main`, with no bypass actors. Effective-rule readback confirms
+  no deletion, no non-fast-forward pushes and four required checks from app 15368,
+  with strict up-to-date validation. Mandatory PR/human-review rules are pending;
+  do not equate this partial protection with the full approved review policy.
 - Only RaviiTF is a collaborator. VidhiTF is a real account selected by the owner
   for security review. Its write invitation was authorized and sent (339959336);
   current effective permission remains public `read` pending acceptance.
@@ -22,8 +26,13 @@ the feature branch descends from the seed, not the earlier orphan history.
 - Dependency vulnerability alerts were disabled (GET returned 404), then enabled
   using PUT `/vulnerability-alerts`; a subsequent GET returned 204. There is no
   dependency manifest yet, so this does not demonstrate a dependency audit.
-- No hosted workflow/check run has been verified. The files in this branch do
-  not yet enforce PRs, required reviews, CI or merge blocking on GitHub.
+- Hosted PR runs 40502040013 (Governance) and 40502040015 (PR evidence) passed at
+  `be68fa98618bab18722d51ff2956b5c96f5782a4`. All four exact check contexts and
+  GitHub Actions app 15368 were observed before making those checks required.
+  The latest-head results must also be verified after further commits.
+- The write invitation remains pending. CODEOWNERS validation currently reports
+  Unknown owner because VidhiTF has read access, not accepted write access.
+  Neither mandatory independent review nor a disabled Merge button is claimed.
 
 ## Required administrator sequence
 
@@ -42,11 +51,12 @@ the feature branch descends from the seed, not the earlier orphan history.
    trusted disclosure validator and CODEOWNERS. See bootstrap-preflight.md for the
    seed SHA and audit receipt. This is a one-time exception, not authorization for
    further default-branch pushes. Publish remaining changes only through the PR.
-4. Publish through the owner's authorized feature-branch/PR bootstrap process;
-   run workflows, inspect actual check-run names, head SHA, conclusions and GitHub
-   Actions app ID. First run the metadata workflow on a subsequent PR with base
-   tooling present. Do not mark nonexistent or failing checks as required.
-5. Inspect existing protection/rulesets again; preserve stronger controls. In
+4. [PR #1](https://github.com/RaviiTF/authclaw-ai-control-tower/pull/1) is open from
+   the authorized feature branch, descending from the seed. All four jobs have
+   actual successful PR runs, including trusted base-code disclosure. Quality CI
+   now avoids duplicate feature-push runs; PR-body edits rerun disclosure only.
+5. After accepted reviewer access, inspect protection/rulesets again and preserve
+   active ruleset 25955410. In
    Settings > Branches add/edit protection for the actual default branch `main`:
    require PRs, **1 approval**, stale-approval dismissal, code-owner review, latest
    reviewable-push approval, conversation resolution and passing checks with the
@@ -55,12 +65,16 @@ the feature branch descends from the seed, not the earlier orphan history.
    recovery changes must be explicit, audited owner decisions, never agent bypasses.
 6. Candidate job contexts are **Governance tests and hygiene**, **Workflow lint**,
    **Secret scan**, **PR disclosure**. They are explicit unique job names in the
-   two workflows. The supplied `branch-protection.json` is a proposed REST payload,
-   **not applied**. Verify observed contexts and app ID before using it. App ID
-   15368 was verified via GET `/apps/github-actions`; also confirm it on real runs.
+   two workflows and have now been observed successfully on GitHub. The supplied
+   `branch-protection.json` is the proposed full review policy, **not applied**.
+   All contexts and app 15368 were verified on real runs. The active ruleset's
+   required-check rule already binds these contexts to that app.
    Never blindly replace a stronger existing configuration with this baseline.
 7. After the prerequisites above and reconciliation with existing rules, an admin
-   may apply the reviewed payload from the repo root:
+   may apply the reviewed full policy, preserving ruleset 25955410. Alternatively
+   implement equivalent review parameters in that existing ruleset; do not weaken
+   its active safeguards or use a temporary zero-review requirement. The prepared
+   classic branch-protection payload can be applied from the repo root:
 
    ```text
    gh api --method PUT repos/RaviiTF/authclaw-ai-control-tower/branches/main/protection --input docs/engineering-governance/branch-protection.json

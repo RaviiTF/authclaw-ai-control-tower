@@ -105,8 +105,10 @@ before acting; no conflicting work or existing protection was present.
   README.md, scripts/governance.py and .github/CODEOWNERS (136 lines).
 - Seed directory and one-commit history scans passed without findings. Push was
   non-forced. Remote `main` readback matched the exact seed SHA and file tree.
-- The next feature branch is created from that seed before overlaying the
-  preserved governance files; unrelated orphan history is not published.
-- Main is not protected at this receipt's cutoff. Hosted CI has not run yet.
-  Candidate required checks/approvals will not be claimed active from local files.
+- The feature branch was created from that seed and published as PR #1; unrelated
+  orphan history was not published. The three approved seed files are unchanged.
+- Hosted PR runs 40502040013 and 40502040015 passed all four checks at be68fa9.
+  Active ruleset 25955410 now enforces no force/deletion and those app-bound
+  required checks. Mandatory human/code-owner/latest-push approval is still pending
+  accepted reviewer access. See publication-verification.md for exact limits.
 - No merge, bypass, visibility change or unapproved access change occurred.
