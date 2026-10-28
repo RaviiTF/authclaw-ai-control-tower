@@ -28,3 +28,9 @@ code and needs native code-owner protection against weakening.
 Never claim branch protection or a disabled Merge button from files alone. Verify
 remote settings separately and distinguish configured, executed and blocked states.
 Never publish secret values in evidence; scanner output must be fully redacted.
+
+The prospective `Governance Gate` additionally checks live GitHub review records,
+current collaborator permission and exact-head approval under a base-pinned policy,
+plus Git-derived growth limits. PR-body approval markers have no authority. It
+still does not authenticate arbitrary test/security prose or replace native merge
+rules. See automated-gate.md for freshness, installation and verification limits.

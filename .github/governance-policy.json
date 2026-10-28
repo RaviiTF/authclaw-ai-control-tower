@@ -1,0 +1,8 @@
+{
+  "repository": "RaviiTF/authclaw-ai-control-tower",
+  "authorized_reviewers": ["VidhiTF"],
+  "max_added_lines": 1000,
+  "max_net_growth_lines": 750,
+  "max_binary_files": 0,
+  "excluded_paths": []
+}
