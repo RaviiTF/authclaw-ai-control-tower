@@ -1,0 +1,22 @@
+{
+  "required_status_checks": {
+    "strict": true,
+    "checks": [
+      {"context": "Governance tests and hygiene", "app_id": 15368},
+      {"context": "Workflow lint", "app_id": 15368},
+      {"context": "Secret scan", "app_id": 15368},
+      {"context": "PR disclosure", "app_id": 15368}
+    ]
+  },
+  "enforce_admins": true,
+  "required_pull_request_reviews": {
+    "dismiss_stale_reviews": true,
+    "require_code_owner_reviews": true,
+    "required_approving_review_count": 1,
+    "require_last_push_approval": true
+  },
+  "restrictions": null,
+  "required_conversation_resolution": true,
+  "allow_force_pushes": false,
+  "allow_deletions": false
+}
