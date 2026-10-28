@@ -48,3 +48,18 @@ all unverified runtime paths; follow evidence-policy.md.
 On this Windows sandbox, Python's default temp directory was inaccessible. For local
 tests set TEMP and TMP to a writable scratch directory outside the tracked tree.
 This is an execution-environment workaround, not an application change.
+
+The prospective `Governance Gate` uses `scripts/governance_gate.py` and
+`.github/governance-policy.json`. Its tests run in the same standard-library suite.
+For a real PR event, run `python scripts/governance_gate.py --event EVENT.json
+--fetch` from a trusted checkout with authenticated read-only `gh` access. This
+reads API records and fetches Git objects; it does not publish or approve anything.
+API/permission errors fail closed. It requires an open PR, full SHAs and a matching
+repository. A local historical review probe is not a hosted gate run.
+
+The new workflow runs for PR changes and review submission/edit/dismissal, with
+per-PR cancellation of obsolete runs. No PR head code is executed with its token.
+Its code/policy must already exist on the reviewed base; first-install and required
+context activation are explicitly described in automated-gate.md. The existing
+four required contexts are preserved. Do not claim the new context is enforced
+until a real successful run is observed and native rules are deliberately updated.
